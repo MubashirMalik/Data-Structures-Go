@@ -45,6 +45,7 @@ func (stack *Stack) Print() {
 
 	if stack.IsEmpty() {
 		fmt.Println("Stack is empty.")
+		return
 	} else {
 		fmt.Print("Printing stack: ")
 	}
@@ -52,4 +53,5 @@ func (stack *Stack) Print() {
 	for temp := stack.top; temp != nil; temp = temp.next {
 		fmt.Printf("%v ", temp.data)
 	}
+	fmt.Println()
 }
