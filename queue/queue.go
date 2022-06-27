@@ -1,5 +1,7 @@
 package queue
 
+import "fmt"
+
 type Node struct {
 	data int
 	next *Node
@@ -45,4 +47,19 @@ func (queue *Queue) Peek() (int, bool) {
 	} else {
 		return queue.front.data, true
 	}
+}
+
+func (queue *Queue) Print() {
+
+	if queue.IsEmpty() {
+		fmt.Println("Queue is empty.")
+		return
+	} else {
+		fmt.Print("Printing queue: ")
+	}
+
+	for temp := queue.front; temp != nil; temp = temp.next {
+		fmt.Printf("%v ", temp.data)
+	}
+	fmt.Println()
 }
