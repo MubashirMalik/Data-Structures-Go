@@ -9,7 +9,7 @@ type Node struct {
 
 type LinkedList struct {
 	head *Node
-	tail *Node
+	tail *Node // to improve insertion in worst case
 	len  int
 }
 
@@ -85,7 +85,7 @@ func (ll *LinkedList) Print() {
 	fmt.Println()
 }
 
-// Find returns the index of the dataToFind and whether is present in list or not. 
+// Find returns the index of the dataToFind and whether it is present in list or not.
 func (ll *LinkedList) Find(dataToFind int) (int, bool) {
 	for i, temp := 0, ll.head; i < ll.len; i, temp = i+1, temp.next {
 		if temp.data == dataToFind {
@@ -93,4 +93,26 @@ func (ll *LinkedList) Find(dataToFind int) (int, bool) {
 		}
 	}
 	return 0, false
+}
+
+// DeleteAt returns the deleted data at the index and whether the index is valid or not
+func (ll *LinkedList) DeleteAt(index int) (int, bool) {
+	dataToReturn := 0
+
+	if index >= ll.len || index < 0 {
+		return dataToReturn, false
+	} else if index == 0 {
+		dataToReturn = ll.head.data
+		ll.head = ll.head.next
+	} else {
+		temp := ll.head
+		for i := 0; i < index-1; i++ {
+			temp = temp.next
+		}
+		dataToReturn = temp.next.data
+		temp.next = temp.next.next
+	}
+	ll.len--
+
+	return dataToReturn, true
 }

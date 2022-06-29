@@ -116,3 +116,73 @@ func TestFind(t *testing.T) {
 		t.Log("PASSED.")
 	}
 }
+
+func TestDeleteAt(t *testing.T) {
+	ll := LinkedList{}
+
+	type test struct {
+		dataIn  int
+		indexIn int
+	}
+
+	tests := []test{
+		{42, 0},
+		{23, 1},
+		{16, 2},
+		{45, 2},
+		{14, 2},
+		{67, 4},
+	}
+
+	for _, v := range tests {
+		ll.InsertAt(v.dataIn, v.indexIn)
+	}
+	
+	if _, ok := ll.DeleteAt(-1); ok {
+		t.Error("Expected", !ok, "Got", ok)
+	} else {
+		t.Log("PASSED.")
+	}
+
+	if data, _ := ll.DeleteAt(0); data != 42 {
+		t.Error("Expected", 42, "Got", data)
+	} else {
+		t.Log("PASSED.")
+	}
+
+	if data, _ := ll.DeleteAt(0); data != 23 {
+		t.Error("Expected", 42, "Got", data)
+	} else {
+		t.Log("PASSED.")
+	}
+
+	if data, _ := ll.DeleteAt(ll.Len()-1); data != 16 {
+		t.Error("Expected", 16, "Got", data)
+	} else {
+		t.Log("PASSED.")
+	}
+
+	if data, _ := ll.DeleteAt(1); data != 45 {
+		t.Error("Expected", 16, "Got", data)
+	} else {
+		t.Log("PASSED.")
+	}
+
+	if data, _ := ll.DeleteAt(1); data != 67 {
+		t.Error("Expected", 67, "Got", data)
+	} else {
+		t.Log("PASSED.")
+	}
+	
+	if data, _ := ll.DeleteAt(0); data != 14 {
+		t.Error("Expected", 14, "Got", data)
+	} else {
+		t.Log("PASSED.")
+	}
+	
+	if _, ok := ll.DeleteAt(0); ok {
+		t.Error("Expected", !ok, "Got", ok)
+	} else {
+		t.Log("PASSED.")
+	}
+}
