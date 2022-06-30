@@ -18,6 +18,10 @@ The most common data structures implemented in Golang for beginners, following b
 * Set
 * Graph
 
+## Solved Challenges using Data Structures
+* Linked List
+    * Reverse List using Head Node
+
 You are more than welcome to contribute to this repository. Please follow the naming conventions according to the golang standards. 
 
 <strong>These implementations are for demonstrative purposes only.</strong> 

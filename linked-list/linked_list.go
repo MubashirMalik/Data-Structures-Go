@@ -71,18 +71,17 @@ func (ll *LinkedList) DataAt(index int) (int, bool) {
 	return temp.data, true
 }
 
-func (ll *LinkedList) Print() {
+func (ll *LinkedList) Print() string {
 	if ll.len == 0 {
-		fmt.Println("List is empty.")
-		return
-	} else {
-		fmt.Print("Printing list:")
+		return fmt.Sprint("List is empty.")
 	}
 
+	str := "Printing list:"
 	for temp := ll.head; temp != nil; temp = temp.next {
-		fmt.Print(" ", temp.data)
+		str += fmt.Sprint(" ", temp.data)
 	}
-	fmt.Println()
+	str += "\n"
+	return str
 }
 
 // Find returns the index of the dataToFind and whether it is present in list or not.
