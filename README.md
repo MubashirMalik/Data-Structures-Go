@@ -10,6 +10,7 @@ The most common data structures implemented in Golang for beginners, following b
 * Queue
 * Linked List
 * Binary Search Tree
+* Hash Table
 
 ### Need implementation
 * Doubly Linked List
