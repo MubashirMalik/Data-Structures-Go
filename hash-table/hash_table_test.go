@@ -35,7 +35,8 @@ func TestInsertValue(t *testing.T) {
 
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < hashGroups; i++ {
-		if ht.InsertValue(rand.Intn(1000)) == false {
+		randomValue := rand.Intn(1000)
+		if ht.FindValue(randomValue) == ht.InsertValue(randomValue) {
 			t.Error("FAILED.")
 		}
 	}

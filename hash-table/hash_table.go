@@ -27,6 +27,10 @@ func (ht *HashTable) CreateHashTable() []ll.LinkedList {
 
 func (ht *HashTable) InsertValue(value int) bool {
 	idx := hashTable[value % hashGroups].Len()
+	// Don't insert if already present in hash map
+	if _, isFound := hashTable[value % hashGroups].Find(value); isFound {
+		return false;
+	}
 	return hashTable[value % hashGroups].InsertAt(value, idx)
 }
 
