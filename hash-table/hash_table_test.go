@@ -36,7 +36,8 @@ func TestInsertValue(t *testing.T) {
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < hashGroups; i++ {
 		randomValue := rand.Intn(1000)
-		if ht.FindValue(randomValue) == ht.InsertValue(randomValue) {
+		_, isFound := ht.FindValue(randomValue);
+		if isFound == ht.InsertValue(randomValue) {
 			t.Error("FAILED.")
 		}
 	}
@@ -46,17 +47,15 @@ func TestFindValue(t *testing.T) {
 	var ht HashTable
 	ht.SetHashGroups(7)
 	ht.CreateHashTable()
-	tests := []int{3, 7, 10, 16, 18, 11, 17}
+	tests := []int{3, 7, 10, 16, 18, 11, 17, 18}
 
 	for _, v := range tests {
-		if ht.InsertValue(v) == false {
-			t.Error("FAILED")
-		}
+		ht.InsertValue(v)
 	}
 
-	for _, v := range tests {
-		if ht.FindValue(v) == false {
-			t.Errorf("FAILED")
-		}
+	if count, _ := ht.FindValue(18); count != 2 {
+		t.Errorf("FAILED")
+	} else {
+		t.Log("PASSED")
 	}
 }
